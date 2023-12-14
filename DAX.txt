@@ -1,0 +1,33 @@
+Total Income = sum('Income'[Amount])
+
+Total Expense = sum('Expense'[Amount])
+
+Target Total = sum('Income Target'[IncomeTarget])
+
+balance = [Total Income] - [Total Expense]
+
+Target Outcome = 
+VAR SelectedMonth = SELECTEDVALUE('Date'[month])
+VAR Difference = [Total Income] - [Target Total]
+
+RETURN
+if(Difference>1 ,"Well done. u have reached your target by"&FORMAT( Difference,"#,##"), "sorry, you could not reached your target by " &FORMAT( Difference,"#,##"))
+
+
+Date Table Create
+
+Date = CALENDARAUTO()
+
+Days = WEEKDAY('Date'[Date])
+
+month = MONTH('Date'[Date])
+
+MonthName = FORMAT('Date'[Date],"mmm")
+
+Quater = "Q" & INT(FORMAT('Date'[Date],"q"))
+
+Quater_No = QUARTER('Date'[Date])
+
+weekday = FORMAT('Date'[Date],"ddd")
+
+year = YEAR('Date'[Date])
